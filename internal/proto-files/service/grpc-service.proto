@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "github.com/litmuschaos/go-util/internal/grpc/service";
+
+import "github.com/litmuschaos/go-util/internal/proto-files/domain/grpc-domain.proto";
+
+service executorService {
+    rpc execute (domain.name) returns (Status);
+}
+
+message Status{
+    bool completedStatus = 1;
+    Error anyError = 2;
+}
+
+message Error {
+    string code = 1;
+    string message = 2;
+
+}
