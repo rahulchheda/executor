@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package domain;
+package Domain;
 
-option go_package = "github.com/litmuschaos/go-util/internal/grpc/domain";
+option go_package = "executor/internal/grpc/domain";
 
-message name{
-    string fileName = 1;
+message Name{
+    string FileName = 1;
 }
 

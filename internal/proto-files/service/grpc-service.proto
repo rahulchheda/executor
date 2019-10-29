@@ -2,21 +2,27 @@ syntax = "proto3";
 
 package service;
 
-option go_package = "github.com/litmuschaos/go-util/internal/grpc/service";
+option go_package = "executor/internal/grpc/service";
 
-import "github.com/litmuschaos/go-util/internal/proto-files/domain/grpc-domain.proto";
+import "google/api/annotations.proto";
+import "executor/internal/proto-files/domain/grpc-domain.proto";
 
-service executorService {
-    rpc execute (domain.name) returns (Status);
+service ExecutorService {
+    rpc Execute (Domain.Name) returns (Status){
+      option (google.api.http) = {
+          post: "/v1/echo"
+          body: "*"
+      };
+    }
 }
 
 message Status{
-    bool completedStatus = 1;
-    Error anyError = 2;
+    bool CompletedStatus = 1;
+    Error AnyError = 2;
 }
 
 message Error {
-    string code = 1;
-    string message = 2;
+    string Code = 1;
+    string Message = 2;
 
 }
